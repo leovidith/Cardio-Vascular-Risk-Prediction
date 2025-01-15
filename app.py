@@ -3,29 +3,32 @@ import pickle
 import numpy as np
 import warnings
 warnings.filterwarnings('ignore')
+import os
 
 app = Flask(__name__)
 
 # Load the pickle files
+base_dir = os.path.dirname(os.path.abspath(__file__))
 try:
-    with open('models\svm90.pkl', 'rb') as f:
+    model_path = os.path.join(base_dir, 'models', 'svm90.pkl')
+    with open(model_path, 'rb') as f:
         model = pickle.load(f)
 
-    with open('models\standard_scaler.pkl', 'rb') as f:
+    model_path = os.path.join(base_dir, 'models', 'standard_scaler.pkl')
+    with open(model_path, 'rb') as f:
         scaler = pickle.load(f)
 
-    # this model2 doesnt require the 1. age in number of days 2. cardio flag 
-    # use this cautiously as you have to reconfig the features 
-    # with open('model2', 'rb') as f:
-    #     dtc_model = pickle.load(f)
-
-    with open('models\dtc.pkl', 'rb') as f:
+    model_path = os.path.join(base_dir, 'models', 'dtc.pkl')
+    with open(model_path, 'rb') as f:
         dtc_model = pickle.load(f)
 
-    with open('models\minmax.pkl', 'rb') as f:
+    model_path = os.path.join(base_dir, 'models', 'minmax.pkl')
+    with open(model_path, 'rb') as f:
         hypertension_scaler = pickle.load(f)
-except:
-    print("Error Loading the Model")
+
+except Exception as e:
+    print(f"⭐ Error Loading Models: {e}")
+
 
 hypertension_stages = {
     0: "Elevated",
