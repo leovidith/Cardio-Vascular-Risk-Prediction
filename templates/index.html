@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardiovascular Risk and Hypertension Stage Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cardiovascular Risk and Hypertension Stage Predictor</h1>
+            <p>Enter the patient details below to predict cardiovascular risk and hypertension stage</p>
+        </header>
+        
+        <main>
+            <form id="predict-form">
+                <!-- Cardiovascular Dataset -->
+                
+                <div class="input-group">
+                    <label for="sex">Sex:</label>
+                    <select id="sex" name="sex" required>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="chest_pain">Chest Pain Type:</label>
+                    <select id="chest_pain" name="chest_pain" required>
+                        <option value="3">Typical Angina</option>
+                        <option value="1">Atypical Angina</option>
+                        <option value="2">Non-Anginal Pain</option>
+                        <option value="0">Asymptomatic</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="cholesterol">Cholesterol (mg/dL):</label>
+                    <input type="number" id="cholesterol" name="cholesterol" min="0" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="fasting_bs">Fasting Blood Sugar:</label>
+                    <select id="fasting_bs" name="fasting_bs" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="max_hr">Max HR (bpm):</label>
+                    <input type="number" id="max_hr" name="max_hr" min="0" max="220" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="exercise_angina">Exercise-Induced Angina:</label>
+                    <select id="exercise_angina" name="exercise_angina" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="oldpeak">Oldpeak (ST Depression):</label>
+                    <input type="number" id="oldpeak" name="oldpeak" step="0.1" min="0" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="st_slope">ST Slope:</label>
+                    <select id="st_slope" name="st_slope" required>
+                        <option value="2">Upsloping</option>
+                        <option value="1">Flat</option>
+                        <option value="0">Downsloping</option>
+                    </select>
+                </div>
+
+                <!-- Hypertension Dataset -->
+                <div class="input-group">
+                    <label for="height">Height (cms):</label>
+                    <input type="number" id="height" name="height" min="0" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="weight">Weight (kg):</label>
+                    <input type="number" id="weight" name="weight" min="0" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="ap_hi">Systolic Blood Pressure (mm Hg):</label>
+                    <input type="number" id="ap_hi" name="ap_hi" min="0" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="ap_lo">Diastolic Blood Pressure (mm Hg):</label>
+                    <input type="number" id="ap_lo" name="ap_lo" min="0" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="gluc">Gluc (Blood Glucose Level):</label>
+                    <select id="gluc" name="gluc" required>
+                        <option value="1">Normal</option>
+                        <option value="2">Above Normal</option>
+                        <option value="3">Well Above Normal</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="smoke">Smoker:</label>
+                    <select id="smoke" name="smoke" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="alco">Drinks Alcohol:</label>
+                    <select id="alco" name="alco" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="active">Active Lifestyle:</label>
+                    <select id="active" name="active" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="bmi">Body Mass Index (BMI):</label>
+                    <input type="number" id="bmi" name="bmi" step="0.1" min="0" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="age_years">Age (Years):</label>
+                    <input type="number" id="age_years" name="age_years" min="0" required>
+                </div>
+
+                <button type="submit">Predict</button>
+            </form>
+            
+            <div class="resultContainer" id="resultContainer" style="display: none;">
+                <!-- <p id="cvdProbability"></p> -->
+                <p id="hypertensionStage"></p>
+                <p id="cvdPrediction"></p>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    background: #121212;
+    color: #e5e5e5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    animation: fadeIn 2s ease-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.container {
+    background: linear-gradient(145deg, #1f1f1f, #333);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    padding: 30px 40px;
+    width: 100%;
+    max-width: 480px;
+    transform: scale(0.95);
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(40px) scale(0.95);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+header p {
+    font-size: 0.9rem;
+    color: #b0b0b0;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #f0f0f0;
+    display: block;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 1px solid #444;
+    border-radius: 12px;
+    background-color: #2a2a2a;
+    color: #e5e5e5;
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    background-color: #333333;
+    border: 1px solid #007aff;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: #007aff;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.2);
+}
+
+button:hover {
+    background-color: #005bb5;
+    transform: translateY(-4px);
+}
+
+button:active {
+    background-color: #004a8e;
+    transform: translateY(0);
+}
+
+button:focus {
+    outline: none;
+}
+
+footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #b0b0b0;
+    margin-top: 20px;
+}
+
+footer a {
+    color: #007aff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.result-container {
+    display: none;
+    margin-top: 30px;
+    text-align: center;
+    animation: fadeInResult 1s ease-out;
+}
+
+@keyframes fadeInResult {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.resultContainer p {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Adjustments for additional input fields */
+.input-group input,
+.input-group select {
+    padding: 12px 15px;
+    font-size: 1rem;
+}
+
+.input-group {
+    margin-bottom: 15px; /* Reduced space for better alignment */
+}
+
+button {
+    margin-top: 20px; /* Added spacing between inputs and the button */
+}
