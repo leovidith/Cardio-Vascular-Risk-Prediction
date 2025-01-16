@@ -11,12 +11,15 @@
     <div class="loading-screen" id="loadingScreen" style="display: none;">
         <div class="loader"></div>
     </div>
-
-    <div class="prediction-overlay" id="predictionOverlay">
-        <h2>Prediction Results</h2>
-        <p id="cvdResult"></p>
-        <p id="hypertensionResult"></p>
-        <button onclick="closePrediction()">Close</button>
+    
+    <div class="prediction-backdrop" id="predictionBackdrop"></div>
+    <div class="prediction-overlay-container" id="overlayContainer">
+        <div class="prediction-overlay" id="predictionOverlay">
+            <h2>Prediction Results</h2>
+            <p id="cvdResult"></p>
+            <p id="hypertensionResult"></p>
+            <button onclick="closePrediction()">Close</button>
+        </div>
     </div>
 
     <div class="container">
@@ -49,7 +52,11 @@
                 
                 <div class="input-group">
                     <label for="cholesterol">Cholesterol (mg/dL):</label>
-                    <input type="number" id="cholesterol" name="cholesterol" min="0" required>
+                    <select id="cholesterol" name="cholesterol" min="0" required>
+                        <option value="1">Normal</option>
+                        <option value="2">Above Normal</option>
+                        <option value="3">Well Above Normal</option>
+                    </select>
                 </div>
                 
                 <div class="input-group">
@@ -151,7 +158,7 @@
                     <input type="number" id="age_years" name="age_years" min="0" required>
                 </div>
 
-                <button type="submit">Predict</button>
+                <button type="submit" id="predictionButton">Predict</button>
             </form>
             
             <div class="resultContainer" id="resultContainer" style="display: none;">

@@ -228,21 +228,8 @@ button {
     z-index: 3;
 }
 
-.prediction-overlay {
-    display: none;
-    position: fixed;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, 0);
-    width: 90%;
-    max-width: 400px;
-    background: #1f1f1f;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    z-index: 1100;
-    text-align: center;
-    backdrop-filter: blur(5px);
+.page-content {
+    transition: filter 0.3s ease;
 }
 
 .prediction-overlay h2 {
@@ -250,7 +237,45 @@ button {
     margin-bottom: 20px;
 }
 
-body.blur-background .content {
+.prediction-overlay-container.active {
+    display: flex;
+}
+
+.page-content.blur {
+    filter: blur(5px);
+}
+
+.prediction-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
-    pointer-events: none;
+    filter: blur(5px);
+    z-index: 1100;
+}
+
+.prediction-overlay {
+    display:none;
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+    max-width: 400px;
+    background: #1f1f1f;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 1100;
+    text-align: center;
+}
+
+#cvdResult
+{
+    margin-bottom: 10px;
 }

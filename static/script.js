@@ -5,6 +5,7 @@ document.getElementById('predict-form').addEventListener('submit', async functio
 
     const loadingScreen = document.getElementById('loadingScreen');
     const predictionOverlay = document.getElementById('predictionOverlay');
+    const predictionBackdrop = document.getElementById('predictionBackdrop');
 
     loadingScreen.style.display = 'flex';
 
@@ -14,7 +15,7 @@ document.getElementById('predict-form').addEventListener('submit', async functio
     console.log("Form Data:", data);
 
     try {
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        await new Promise(resolve => setTimeout(resolve, 2750));
 
         const response = await fetch('/predict', {
             method: 'POST',
@@ -30,8 +31,7 @@ document.getElementById('predict-form').addEventListener('submit', async functio
         console.log("Response Data:", responseData);
 
         loadingScreen.style.display = 'none';
-
-        document.body.classList.add('blur-background');
+        predictionBackdrop.style.display = 'block';
         predictionOverlay.style.display = 'block';
         document.getElementById('cvdResult').textContent = `CVD Prediction: ${responseData.cvd_prediction}`;
         document.getElementById('hypertensionResult').textContent = `Hypertension Stage: ${responseData.hypertension_stage}`;
@@ -49,5 +49,5 @@ document.getElementById('predict-form').addEventListener('submit', async functio
 
 function closePrediction() {
     document.getElementById('predictionOverlay').style.display = 'none';
-    document.body.classList.remove('blur-background');
+    document.getElementById('predictionBackdrop').style.display = 'none';
 }
