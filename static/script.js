@@ -1,5 +1,54 @@
 console.log("activated");
 
+// Step-by-Step Wizard Logic
+const formSteps = document.querySelectorAll('.form-step');
+const progressBar = document.getElementById('progress');
+const nextButtons = document.querySelectorAll('.next-btn');
+const prevButtons = document.querySelectorAll('.prev-btn');
+let currentStep = 0;
+
+// Show the first step initially
+showStep(currentStep);
+
+// Next button functionality
+nextButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        if (currentStep < formSteps.length - 1) {
+            currentStep++;
+            showStep(currentStep);
+            updateProgressBar();
+        }
+    });
+});
+
+// Previous button functionality
+prevButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        if (currentStep > 0) {
+            currentStep--;
+            showStep(currentStep);
+            updateProgressBar();
+        }
+    });
+});
+
+// Function to show the current step
+function showStep(stepIndex) {
+    formSteps.forEach((step, index) => {
+        step.classList.toggle('active', index === stepIndex);
+    });
+}
+
+// Function to update the progress bar
+function updateProgressBar() {
+    const totalSteps = formSteps.length;
+    const baseProgress = 10; // Start with 10% progress
+    const stepProgress = ((currentStep + 1) / totalSteps) * 90; // Remaining 90% divided by steps
+    const progress = baseProgress + stepProgress; // Total progress
+    progressBar.style.width = `${progress}%`;
+}
+
+// Form Submission and Loading Animation Logic
 document.getElementById('predict-form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
@@ -7,6 +56,7 @@ document.getElementById('predict-form').addEventListener('submit', async functio
     const predictionOverlay = document.getElementById('predictionOverlay');
     const predictionBackdrop = document.getElementById('predictionBackdrop');
 
+    // Show loading screen
     loadingScreen.style.display = 'flex';
 
     const formData = new FormData(this);
@@ -47,6 +97,7 @@ document.getElementById('predict-form').addEventListener('submit', async functio
     }
 });
 
+// Function to close the prediction overlay
 function closePrediction() {
     document.getElementById('predictionOverlay').style.display = 'none';
     document.getElementById('predictionBackdrop').style.display = 'none';

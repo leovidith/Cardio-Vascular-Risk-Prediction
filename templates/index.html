@@ -24,145 +24,152 @@
 
     <div class="container">
         <header>
-            <h1> Early Stage Cardiovascular Disease Predictor</h1>
+            <h1>Early Stage Cardiovascular Disease Predictor</h1>
             <p>Enter the patient details below to predict cardiovascular risk and hypertension stage</p>
         </header>
         
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+
         <main>
             <form id="predict-form" method="POST" action="/predict">
-                <!-- Cardiovascular Dataset -->
-                
-                <div class="input-group">
-                    <label for="sex">Sex:</label>
-                    <select id="sex" name="sex" required>
-                        <option value="1">Male</option>
-                        <option value="0">Female</option>
-                    </select>
-                </div>
-                
-                <div class="input-group">
-                    <label for="chest_pain">Chest Pain Type:</label>
-                    <select id="chest_pain" name="chest_pain" required>
-                        <option value="3">Typical Angina</option>
-                        <option value="1">Atypical Angina</option>
-                        <option value="2">Non-Anginal Pain</option>
-                        <option value="0">Asymptomatic</option>
-                    </select>
-                </div>
-                
-                <div class="input-group">
-                    <label for="cholesterol">Cholesterol (mg/dL):</label>
-                    <select id="cholesterol" name="cholesterol" min="0" required>
-                        <option value="1">Normal</option>
-                        <option value="2">Above Normal</option>
-                        <option value="3">Well Above Normal</option>
-                    </select>
-                </div>
-                
-                <div class="input-group">
-                    <label for="fasting_bs">Fasting Blood Sugar:</label>
-                    <select id="fasting_bs" name="fasting_bs" required>
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
-                    </select>
-                </div>
-                
-                <div class="input-group">
-                    <label for="max_hr">Max HR (bpm):</label>
-                    <input type="number" id="max_hr" name="max_hr" min="0" max="220" required>
-                </div>
-                
-                <div class="input-group">
-                    <label for="exercise_angina">Exercise-Induced Angina:</label>
-                    <select id="exercise_angina" name="exercise_angina" required>
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
-                    </select>
-                </div>
-                
-                <div class="input-group">
-                    <label for="oldpeak">Oldpeak (ST Depression):</label>
-                    <input type="number" id="oldpeak" name="oldpeak" step="0.1" min="0" required>
-                </div>
-                
-                <div class="input-group">
-                    <label for="st_slope">ST Slope:</label>
-                    <select id="st_slope" name="st_slope" required>
-                        <option value="2">Upsloping</option>
-                        <option value="1">Flat</option>
-                        <option value="0">Downsloping</option>
-                    </select>
+                <!-- Step 1: Personal Details -->
+                <div class="form-step active" id="step1">
+                    <h3>Step 1: Personal Details</h3>
+                    <div class="input-group">
+                        <label for="sex">Sex:</label>
+                        <select id="sex" name="sex" required>
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="age_years">Age (Years):</label>
+                        <input type="number" id="age_years" name="age_years" min="0" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="height">Height (cms):</label>
+                        <input type="number" id="height" name="height" min="0" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="weight">Weight (kg):</label>
+                        <input type="number" id="weight" name="weight" min="0" required>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="next-btn">Next</button>
+                    </div>
                 </div>
 
-                <!-- Hypertension Dataset -->
-                <div class="input-group">
-                    <label for="height">Height (cms):</label>
-                    <input type="number" id="height" name="height" min="0" required>
+                <!-- Step 2: Health Metrics -->
+                <div class="form-step" id="step2">
+                    <h3>Step 2: Health Metrics</h3>
+                    <div class="input-group">
+                        <label for="ap_hi">Systolic Blood Pressure (mm Hg):</label>
+                        <input type="number" id="ap_hi" name="ap_hi" min="0" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="ap_lo">Diastolic Blood Pressure (mm Hg):</label>
+                        <input type="number" id="ap_lo" name="ap_lo" min="0" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="gluc">Gluc (Blood Glucose Level):</label>
+                        <select id="gluc" name="gluc" required>
+                            <option value="1">Normal</option>
+                            <option value="2">Above Normal</option>
+                            <option value="3">Well Above Normal</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="chest_pain">Chest Pain Type:</label>
+                        <select id="chest_pain" name="chest_pain" required>
+                            <option value="3">Typical Angina</option>
+                            <option value="1">Atypical Angina</option>
+                            <option value="2">Non-Anginal Pain</option>
+                            <option value="0">Asymptomatic</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="cholesterol">Cholesterol (mg/dL):</label>
+                        <select id="cholesterol" name="cholesterol" required>
+                            <option value="1">Normal</option>
+                            <option value="2">Above Normal</option>
+                            <option value="3">Well Above Normal</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="fasting_bs">Fasting Blood Sugar:</label>
+                        <select id="fasting_bs" name="fasting_bs" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="max_hr">Max HR (bpm):</label>
+                        <input type="number" id="max_hr" name="max_hr" min="0" max="220" required>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="prev-btn">Back</button>
+                        <button type="button" class="next-btn">Next</button>
+                    </div>
                 </div>
 
-                <div class="input-group">
-                    <label for="weight">Weight (kg):</label>
-                    <input type="number" id="weight" name="weight" min="0" required>
+                <!-- Step 3: Lifestyle Information -->
+                <div class="form-step" id="step3">
+                    <h3>Step 3: Lifestyle Information</h3>
+                    <div class="input-group">
+                        <label for="exercise_angina">Exercise-Induced Angina:</label>
+                        <select id="exercise_angina" name="exercise_angina" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="oldpeak">Oldpeak (ST Depression):</label>
+                        <input type="number" id="oldpeak" name="oldpeak" step="0.1" min="0" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="st_slope">ST Slope:</label>
+                        <select id="st_slope" name="st_slope" required>
+                            <option value="2">Upsloping</option>
+                            <option value="1">Flat</option>
+                            <option value="0">Downsloping</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="smoke">Smoker:</label>
+                        <select id="smoke" name="smoke" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="alco">Drinks Alcohol:</label>
+                        <select id="alco" name="alco" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="active">Active Lifestyle:</label>
+                        <select id="active" name="active" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="bmi">Body Mass Index (BMI):</label>
+                        <input type="number" id="bmi" name="bmi" step="0.1" min="0" required>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="prev-btn">Back</button>
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </div>
                 </div>
-
-                <div class="input-group">
-                    <label for="ap_hi">Systolic Blood Pressure (mm Hg):</label>
-                    <input type="number" id="ap_hi" name="ap_hi" min="0" required>
-                </div>
-
-                <div class="input-group">
-                    <label for="ap_lo">Diastolic Blood Pressure (mm Hg):</label>
-                    <input type="number" id="ap_lo" name="ap_lo" min="0" required>
-                </div>
-
-                <div class="input-group">
-                    <label for="gluc">Gluc (Blood Glucose Level):</label>
-                    <select id="gluc" name="gluc" required>
-                        <option value="1">Normal</option>
-                        <option value="2">Above Normal</option>
-                        <option value="3">Well Above Normal</option>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                    <label for="smoke">Smoker:</label>
-                    <select id="smoke" name="smoke" required>
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                    <label for="alco">Drinks Alcohol:</label>
-                    <select id="alco" name="alco" required>
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                    <label for="active">Active Lifestyle:</label>
-                    <select id="active" name="active" required>
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                    <label for="bmi">Body Mass Index (BMI):</label>
-                    <input type="number" id="bmi" name="bmi" step="0.1" min="0" required>
-                </div>
-
-                <div class="input-group">
-                    <label for="age_years">Age (Years):</label>
-                    <input type="number" id="age_years" name="age_years" min="0" required>
-                </div>
-
-                <button type="submit" id="predictionButton">Predict</button>
             </form>
             
             <div class="resultContainer" id="resultContainer" style="display: none;">
-                <!-- <p id="cvdProbability"></p> -->
                 <p id="hypertensionStage"></p>
                 <p id="cvdPrediction"></p>
             </div>

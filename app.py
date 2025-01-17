@@ -112,7 +112,7 @@ def predict():
             cvd_prediction = "Moderate Chances (10 - 20%)"
             prob_scaled += 10
         else: 
-            cvd_prediction = "Normal Chances"
+            cvd_prediction = "Normal"
 
         print(f"Probability after Rule based system: {prob_scaled}")
 
